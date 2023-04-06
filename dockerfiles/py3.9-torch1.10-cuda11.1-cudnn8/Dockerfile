@@ -29,7 +29,7 @@ RUN   if [[ "${PYTHON_VERSION}" == "3.9" ]]; then   apt  -o Acquire::Check-Valid
 RUN   ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python
 RUN   curl -O https://bootstrap.pypa.io/get-pip.py &&     python get-pip.py &&     rm get-pip.py
 RUN   pip --no-cache-dir install future  typing    numpy         tensorboard         h5py &&     rm -rf /root/.cache/pip/http/*
-RUN   pip install torch==1.10.2+cu111 torchvision==0.11.3+cu111 torchaudio===0.10.2 -f https://download.pytorch.org/whl/torch_stable.html &&     rm -rf /root/.cache/pip/http/*
+RUN   pip install torch==1.10.2+cu111 torchvision==0.11.3+cu111 torchaudio==0.10.2 -f https://download.pytorch.org/whl/torch_stable.html &&     rm -rf /root/.cache/pip/http/*
 RUN   mkdir /tmp/openmpi &&     cd /tmp/openmpi &&     wget https://www.open-mpi.org/software/ompi/v4.0/downloads/openmpi-4.0.5.tar.gz &&     tar zxf openmpi-4.0.5.tar.gz &&     cd openmpi-4.0.5 &&     ./configure --enable-orterun-prefix-by-default  --with-cuda=/usr/local/cuda  &&     make -j $(nproc) all &&     make install &&     ldconfig &&     rm -rf /tmp/openmpi
 RUN   ldconfig /usr/local/cuda/targets/x86_64-linux/lib/stubs &&     HOROVOD_GPU_ALLREDUCE=NCCL  HOROVOD_WITH_PYTORCH=1 pip install --no-cache-dir horovod==0.20.0 &&     ldconfig
 RUN   apt install -y --no-install-recommends openssh-client openssh-server &&     mkdir -p /var/run/sshd
