@@ -11,7 +11,7 @@ ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV NVIDIA_REQUIRE_CUDA=cuda>=11.1 brand=tesla,driver>=450,driver<451
-LABEL maintainer=yunchao<yunchao@sakuraz.top>
+LABEL maintainer=yunchao<yunchaozk@gmail.com>
 ENV NCCL_VERSION=2.8.3
 RUN apt update && apt install -y --no-install-recommends cuda-libraries-11-1=11.1.1-1 libnpp-11-1=11.1.2.301-1 cuda-nvtx-11-1=11.1.74-1 libcublas-11-1=11.3.0.106-1 libnccl2=2.8.4-1+cuda11.1 && apt-mark hold libnccl2 && rm -rf /var/lib/apt/lists/*
 RUN apt update && apt install -y --no-install-recommends cuda-nvml-dev-11-1=11.1.74-1 cuda-command-line-tools-11-1=11.1.1-1 cuda-nvprof-11-1=11.1.105-1 libnpp-dev-11-1=11.1.2.301-1 cuda-libraries-dev-11-1=11.1.1-1 cuda-minimal-build-11-1=11.1.1-1 libnccl-dev=2.8.4-1+cuda11.1 libcublas-dev-11-1=11.3.0.106-1 libcusparse-11-1=11.3.0.10-1 libcusparse-dev-11-1=11.3.0.10-1 && apt-mark hold libnccl-dev && rm -rf /var/lib/apt/lists/*
