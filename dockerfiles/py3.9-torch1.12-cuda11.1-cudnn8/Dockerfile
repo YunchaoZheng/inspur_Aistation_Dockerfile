@@ -34,7 +34,7 @@ RUN ldconfig /usr/local/cuda/targets/x86_64-linux/lib/stubs && HOROVOD_GPU_ALLRE
 RUN apt install -y --no-install-recommends openssh-client openssh-server && mkdir -p /var/run/sshd
 RUN cat /etc/ssh/ssh_config | grep -v StrictHostKeyChecking > /etc/ssh/ssh_config.new && echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config.new && cat /etc/ssh/sshd_config | grep -vPermitRootLogin> /etc/ssh/sshd_config.new && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config.new && mv /etc/ssh/ssh_config.new /etc/ssh/ssh_config && mv /etc/ssh/sshd_config.new /etc/ssh/sshd_config
 RUN apt install -y --no-install-recommends subversion && svn checkout https://github.com/horovod/horovod/trunk/examples && rm -rf /examples/.svn
-RUN pip --no-cache-dir install jupyter jupyterlab scipy opencv-python tensorboardX mxboardtqdm mpi4py matplotlib visdom && rm -rf /root/.cache/pip/http/*
+RUN pip --no-cache-dir install jupyter jupyterlab pandas scipy opencv-python tensorboardX mxboardtqdm mpi4py matplotlib openpyxl visdom scikit-learn keras && rm -rf /root/.cache/pip/http/*
 RUN apt install -y --allow-downgrades --allow-change-held-packages --no-install-recommends libsm-dev libxrender1 libxext-dev&&apt clean &&rm -rf /var/lib/apt/lists/*
 RUN mkdir /etc/jupyter/ && wget -P /etc/jupyter/https://cdn.jsdelivr.net/gh/YunchaoZheng/inspur_Aistation_Dockerfile/inspur_jupyter_config/files/jupyter_notebook_config.py
 RUN wget -P /etc/jupyter/ https://cdn.jsdelivr.net/gh/YunchaoZheng/inspur_Aistation_Dockerfile/inspur_jupyter_config/files/custom.js
